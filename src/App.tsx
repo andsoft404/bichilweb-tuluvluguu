@@ -273,7 +273,7 @@ function MainSheet() {
   const tableRef = useRef<HTMLTableElement>(null)
 
   /** Drag a milestone flag to change its lineCol (date) – works with mouse & touch */
-  const onFlagDrag = useCallback((startX: number, msIndex: number) => {
+  const onFlagDrag = useCallback((msIndex: number) => {
     const table = tableRef.current
     if (!table) return
     const headerRow = table.querySelector('thead tr:last-child') as HTMLTableRowElement
@@ -398,8 +398,8 @@ function MainSheet() {
                   return (
                     <th key={i} className="milestone-line-header" style={{ '--ms-color': ms.color } as React.CSSProperties}>
                       <div className="milestone-flag"
-                        onMouseDown={(e) => { e.preventDefault(); onFlagDrag(e.clientX, msIdx) }}
-                        onTouchStart={(e) => { e.preventDefault(); onFlagDrag(e.touches[0].clientX, msIdx) }}
+                        onMouseDown={(e) => { e.preventDefault(); onFlagDrag(msIdx) }}
+                        onTouchStart={(e) => { e.preventDefault(); onFlagDrag(msIdx) }}
                       >
                         <span className="milestone-flag-label">{ms.label}</span>
                         <span className="milestone-flag-date">{dateLabel}</span>
